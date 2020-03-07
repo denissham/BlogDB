@@ -23,8 +23,9 @@ DROP TABLE IF EXISTS `post_tags`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `post_tags` (
-  `posts_post_id` int DEFAULT NULL,
-  `tags_tag_id` int DEFAULT NULL,
+  `posts_post_id` int NOT NULL,
+  `tags_tag_id` int NOT NULL,
+  PRIMARY KEY (`posts_post_id`,`tags_tag_id`),
   KEY `fk_pt_tag_idx` (`tags_tag_id`),
   KEY `fk_pt_post_idx` (`posts_post_id`),
   KEY `fk_posts_post_tags_idx` (`posts_post_id`),
@@ -56,7 +57,7 @@ CREATE TABLE `posts` (
   `body` text,
   `date` date NOT NULL,
   `user_id` int NOT NULL,
-  PRIMARY KEY (`post_id`),
+  PRIMARY KEY (`post_id`,`user_id`),
   UNIQUE KEY `post_id_UNIQUE` (`post_id`),
   KEY `fk_user_id_users_idx` (`user_id`),
   CONSTRAINT `fk_user_id_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
@@ -133,4 +134,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-02 22:17:59
+-- Dump completed on 2020-03-07 16:37:37
