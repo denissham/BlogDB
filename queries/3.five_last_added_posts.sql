@@ -1,0 +1,1 @@
+SELECT * FROM BlogDBNew.posts ORDER BY date DESC LIMIT 5;
